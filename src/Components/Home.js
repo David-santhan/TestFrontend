@@ -273,7 +273,7 @@ const handleSearchChange = (event) => {
     } else if (preferenseType === "Database") {
     e.preventDefault();
      try {
-      await axios.post("http://localhost:9866/AddEmployee",employeeData);
+      await axios.post("https://testbackend-4vdh.onrender.com/AddEmployee",employeeData);
     alert("Employee Saved!");
 
      } catch (error) {
@@ -345,7 +345,7 @@ const removeSkill = (index) => {
     }
     } else if (preferenseType === "Database") {
      try {
-       const response = await fetch('http://localhost:9866/GetAllEmployees');
+       const response = await fetch('https://testbackend-4vdh.onrender.com/GetAllEmployees');
       const data = await response.json();
       setLocalEmployeesData(data.data);
        setShowGetPermissionModal(false)  
@@ -372,7 +372,7 @@ const removeSkill = (index) => {
   return employee;
     } else if (preferenseType === "Database") {
       try {
-        let response = await fetch(`http://localhost:9866/GetEmployee/${Id}`)
+        let response = await fetch(`https://testbackend-4vdh.onrender.com/GetEmployee/${Id}`)
         let data = await response.json();
         setFormData(data.data);
       } catch (error) {
@@ -406,7 +406,7 @@ const handleEditChange = (e) => {
         e.preventDefault();
         try {
           const response = await axios.put(
-            `http://localhost:9866/updateEmployeeDetails/${formData._id}`,
+            `https://testbackend-4vdh.onrender.com/updateEmployeeDetails/${formData._id}`,
             formData
           );
           console.log('Item updated:', response.data);
@@ -449,7 +449,7 @@ const handleSoftDelete = async (id)=>{
   console.log(idToDelete);
         try {
           const Status = "Inactive"
-          const response = await axios.put(`http://localhost:9866/softDelete/${id}`,Status);
+          const response = await axios.put(`https://testbackend-4vdh.onrender.com/softDelete/${id}`,Status);
           console.log('Item updated:', response.data);
           alert("Updated Successfully")
           // Optionally, redirect or update the item list
@@ -460,7 +460,7 @@ const handleSoftDelete = async (id)=>{
 
 const handleDeleteEmployee = async (id) => {
     try{
-        const res = await axios.delete(`http://localhost:9866/deleteEmployee/${id}`);
+        const res = await axios.delete(`https://testbackend-4vdh.onrender.com/deleteEmployee/${id}`);
         if(res.data.success){
             alert(res.data.msg);
             window.location.reload();
@@ -480,7 +480,7 @@ const handleCheckboxChange = (event, itemId) => {
 
 const handleDeleteSelected = async () => {
            try {
-               const response = await fetch('http://localhost:9866/deleteSelected', {
+               const response = await fetch('https://testbackend-4vdh.onrender.com/deleteSelected', {
                    method: 'DELETE',
                    headers: { 'Content-Type': 'application/json' },
                    body: JSON.stringify({ ids: selectedItems })
@@ -500,7 +500,7 @@ const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:9866/api/search?term=${searchTerm}`);
+      const response = await fetch(`https://testbackend-4vdh.onrender.com/api/search?term=${searchTerm}`);
       const data = await response.json();
       console.log(data)
       setLocalEmployeesData(data);
